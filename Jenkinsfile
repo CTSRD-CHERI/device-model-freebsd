@@ -2,7 +2,7 @@
 
 properties([disableConcurrentBuilds(),
             disableResume(),
-            [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/CTSRD-CHERI/cheribsd/'],
+            [$class: 'GithubProjectProperty', displayName: '', projectUrlStr: 'https://github.com/CTSRD-CHERI/device-model-freebsd/'],
             [$class: 'CopyArtifactPermissionProperty', projectNames: '*'],
             [$class: 'JobPropertyImpl', throttle: [count: 1, durationName: 'hour', userBoost: true]],
             durabilityHint('PERFORMANCE_OPTIMIZED'),
@@ -61,14 +61,14 @@ find cheribsd-test-results
     }
 }
 
-["mips-nocheri", "mips-hybrid", "mips-purecap", "riscv64", "riscv64-hybrid", "riscv64-purecap", "native"].each { suffix ->
+["mips-nocheri", "mips-hybrid", "mips-purecap"].each { suffix ->
     String name = "cheribsd-${suffix}"
     jobs[suffix] = { ->
         cheribuildProject(target: "cheribsd-${suffix}", architecture: suffix,
-                extraArgs: '--cheribsd/build-options=-s --cheribsd/no-debug-info --keep-install-dir --install-prefix=/rootfs --cheribsd/build-tests',
+                extraArgs: '--cheribsd/build-options=-s --cheribsd/no-debug-info --keep-install-dir --install-prefix=/rootfs',
                 skipArchiving: true, skipTarball: true,
                 sdkCompilerOnly: true, // We only need clang not the CheriBSD sysroot since we are building that.
-                customGitCheckoutDir: 'cheribsd',
+                customGitCheckoutDir: 'device-model-freebsd',
                 gitHubStatusContext: "ci/${suffix}",
                 /* Custom function to run tests since --test will not work (yet) */
                 runTests: false, afterBuild: { params -> buildImageAndRunTests(params, suffix) }

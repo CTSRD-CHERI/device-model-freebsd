@@ -61,7 +61,7 @@ find cheribsd-test-results
     }
 }
 
-["mips-nocheri", "mips-hybrid", "mips-purecap"].each { suffix ->
+["mips-nocheri"].each { suffix ->
     String name = "cheribsd-${suffix}"
     jobs[suffix] = { ->
         cheribuildProject(target: "cheribsd-${suffix}", architecture: suffix,

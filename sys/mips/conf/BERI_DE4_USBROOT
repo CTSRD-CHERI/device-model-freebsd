@@ -20,7 +20,8 @@ options 	ROOTDEVNAME=\"ufs:/dev/da0\"
 #options 	ROOTDEVNAME=\"ufs:/dev/altera_sdcard0\"
 device		scbus
 device		pass
-#device		umass
+device		usb
+device		umass
 device		da
 device		ahci
 device		syscon

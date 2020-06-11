@@ -20,7 +20,7 @@ options 	ROOTDEVNAME=\"ufs:/dev/da0\"
 #options 	ROOTDEVNAME=\"ufs:/dev/altera_sdcard0\"
 device		scbus
 device		pass
-device		umass
+#device		umass
 device		da
 device		ahci
 device		syscon
@@ -32,7 +32,7 @@ device		ext_resources
 options 	FDT_DTB_STATIC
 makeoptions	FDT_DTS_FILE=beripad-de4-msgdma.dts
 
-#options 	MD_ROOT
+options 	MD_ROOT
 #options 	MD_ROOT_SIZE=32768
 #options 	MD_ROOT_SIZE=24576
 #makeoptions	MFS_IMAGE=/home/br/dev/freebsd-head/mips64.img

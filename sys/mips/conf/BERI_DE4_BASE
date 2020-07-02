@@ -54,5 +54,5 @@ device		altera_msgdma
 #options	USB_DEBUG
 #options	USB_REQ_DEBUG
 #options	USB_VERBOSE
-#device		usb
-#device		saf1761otg
+device		usb
+device		saf1761otg
